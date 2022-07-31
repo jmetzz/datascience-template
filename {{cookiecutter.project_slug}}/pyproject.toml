@@ -1,0 +1,94 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_slug }}"
+version = "{{ cookiecutter.version }}"
+description = "{{ cookiecutter.friendly_name }}"
+authors = ["{{ cookiecutter.author }}"]
+license = "{{cookiecutter.license}}"
+readme = "README.md"
+keywords = ["{{ cookiecutter.project_slug }}"]
+repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+packages = [
+    { include = "{{cookiecutter.package_name}}", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+typer = "^0.6.1"
+pandas  = "^1.4"
+matplotlib = "^3.5.2"
+numpy = "^1.23.1"
+hydra-core = "^1.2"
+jupyterlab = { version = "^3.4.3", optional = true }
+ipywidgets = { version = "^7.7.1", optional = true }
+ipykernel = { version = "^6.15.1", optional = true }
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+colorama = "^0.4.5"
+isort = "^5.10.1"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+pytest-sugar = "^0.9.5"
+ipdb = "^0.13.9"
+pip-licenses = "^3.5.4"
+pre-commit = "^2.20.0"
+pydocstyle = "^6.1.1"
+pylint = "^2.14.5"
+pyupgrade = "^2.37.1"
+
+
+[tool.poetry.extras]
+jupyter = ["ipykernel", "jupyterlab", "ipywidgets"]
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.git
+| \.mypy_cache
+| \.venv
+| _build
+| build
+)/
+'''
+
+[tool.pylint.master]
+extension-pkg-whitelist = ["pydantic"]
+fail-under = "9"
+ignore = []
+
+[tool.pylint.format]
+max-line-length = "120"
+
+[tool.pylint.messages_control]
+# pylint: disable=unsubscriptable-object is used here due to a bug
+# showing too many false-positives. See https://github.com/PyCQA/pylint/issues/3882
+disable = [
+    "trailing-whitespace",
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "missing-class-docstring",
+    "unsubscriptable-object",
+    ]
+
+[tool.pylint.miscellaneous]
+notes = "FIXME,XXX,TODO,TODO,fixme,todo,TODO:"
+
+[tool.pytest.ini_options]
+addopts = "--pdbcls=IPython.terminal.debugger:TerminalPdb"
+
+[tool.coverage.report]
+omit = ["*/__init__.py", ".mypy_cache", ".reports", ".git"]
+show_missing = true
+
+[tool.coverage.run]
+omit = ["*/__init__.py", ".mypy_cache", ".reports", ".git"]
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry_core>=1.0.0"]
