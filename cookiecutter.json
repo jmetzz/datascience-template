@@ -1,0 +1,12 @@
+{
+  "project_slug": "project-name",
+  "package_name": "{{ cookiecutter.project_slug.replace('-', '_') }}",
+  "friendly_name": "{{ cookiecutter.project_slug.replace('-', ' ').title() }}",
+  "description": "A short description of the project.",
+  "author": "Jean Metz",
+  "email": "jmetzz.dev@gmail.com",
+  "github_username": "jmetzz",
+  "version": "0.0.1",
+  "copyright_year": "{% now 'utc', '%Y' %}",
+  "license": ["MIT", "BSD-3-Clause", "No license file"]
+}

@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "datascience template"
+version = "0.0.1"
+description = "A simplified template for data science projects"
+authors = ["Jean Metz"]
+
+readme = "README.md"
+keywords = ["data science", "machine learning"]
+repository = "https://github.com/jmetzz/datascience-template"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+ipdb = "^0.13.9"
+
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.git
+| \.mypy_cache
+| \.venv
+| _build
+| build
+)/
+'''
+
+[tool.pylint.master]
+extension-pkg-whitelist = ["pydantic"]
+fail-under = "9"
+ignore = []
+
+[tool.pylint.format]
+max-line-length = "120"
+
+[tool.pylint.messages_control]
+# pylint: disable=unsubscriptable-object is used here due to a bug
+# showing too many false-positives. See https://github.com/PyCQA/pylint/issues/3882
+disable = [
+    "trailing-whitespace",
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "missing-class-docstring",
+    "unsubscriptable-object",
+    ]
+
+[tool.pylint.miscellaneous]
+notes = "FIXME,XXX,TODO,TODO,fixme,todo,TODO:"
+
+#[tool.pytest.ini_options]
+#addopts = "--pdbcls=IPython.terminal.debugger:TerminalPdb"
+
+[tool.coverage.report]
+omit = ["*/__init__.py", ".mypy_cache", ".reports", ".git"]
+show_missing = true
+
+[tool.coverage.run]
+omit = ["*/__init__.py", ".mypy_cache", ".reports", ".git"]
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry_core>=1.0.0"]
