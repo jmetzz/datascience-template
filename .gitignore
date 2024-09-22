@@ -1,3 +1,6 @@
+# Custom
+scratch*.py
+
 # OSX useful to ignore
 *.DS_Store
 .AppleDouble
@@ -28,6 +31,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -40,6 +44,58 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# PyBuilder
+.pybuilder/
+target/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
 # Python environments
 env/
 ENV/
@@ -50,12 +106,14 @@ venv.bak/
 
 # DotEnv configuration (Environment variables and configuration files)
 .env
+# env file with specific suffixes (eg .env.local, .env.prod ...)
+.env.*
 
 ## Editors and IDEs
 # Jupyter Notebook
 .ipynb_checkpoints/
 # IntelliJ Idea family of suites
-.idea
+.idea/
 *.iml
 # File-based project format:
 *.ipr
@@ -65,10 +123,15 @@ venv.bak/
 # Visual Studio Code
 .vscode/
 # Spyder
-.spyproject/
+.spyproject
+.spyderproject
+# Rope project settings
+.ropeproject
 # vim
 *.swp
 *.swo
+# SageMath parsed files
+*.sage.py
 
 # Unit test / coverage reports
 htmlcov/
@@ -81,20 +144,28 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+# mkdocs documentation
+/site
+# Sphinx documentation
+docs/_build/
 
 # Translations
 *.mo
 *.pot
 
-# Sphinx documentation
-docs/_build/
-
 # Mypy cache
 .mypy_cache/
+.dmypy.json
+dmypy.json
 
-# Hydra logs
-outputs
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
 
 # Other
 *.log
-temp_resources/
