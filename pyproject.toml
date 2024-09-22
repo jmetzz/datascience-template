@@ -18,7 +18,7 @@ ruff = "^0.6.6"
 pytest = "^8.3.3"
 pytest-cookies = "*"
 pytest-sugar = "*"
-cookiecutter = "*"
+cookiecutter = "^2.6.0"
 pyyaml = "^6.0.2"
 
 [tool.ruff]

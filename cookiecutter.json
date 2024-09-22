@@ -8,13 +8,11 @@
   "version": "0.1.0",
   "copyright_year": "{% now 'utc', '%Y' %}",
   "license": [
-    "MIT license",
-    "BSD license",
+    "MIT",
     "BSD-3-Clause",
-    "ISC license",
-    "Apache Software License 2.0",
-    "GNU General Public License v3",
-    "Not open source",
+    "ISC",
+    "Apache-2.0",
+    "GPL-3.0-only",
     "No license file"
   ],
   "is_library": [
