@@ -1,12 +1,21 @@
 """Test cases for the __main__ module."""
+
+import logging
+
 from typer.testing import CliRunner
 
-from {{cookiecutter.package_name}} import cli
+from cli import app
 
 runner = CliRunner()
 
 
-def test_app():
-    result = runner.invoke(cli.app)
-    assert result.exit_code == 0
-    assert "Project: " in result.stdout
+def test_app(caplog):
+    # Test that the app runs successfully
+    with caplog.at_level(logging.INFO):  # Capture logs at INFO level
+        result = runner.invoke(app)
+
+        # Check that the command exited successfully (exit code 0)
+        assert result.exit_code == 0
+
+        # Check that the log contains the expected output
+        assert f"Project: {{cookiecutter.project_slug}}" in caplog.text

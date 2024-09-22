@@ -1,67 +1,105 @@
 [tool.poetry]
-name = "datascience template"
-version = "0.0.1"
-description = "A simplified template for data science projects"
-authors = ["Jean Metz"]
-
+name = "cookiecutter-ds-pypackage"
+version = "0.1.0"
+description = "A simplified cookiecutter template for data science projects."
+authors = ["Jean Metz <jmetzz.dev@gmail.com>"]
 readme = "README.md"
-keywords = ["data science", "machine learning"]
+keywords = ["cookiecutter", "template", "data science", "machine learning"]
 repository = "https://github.com/jmetzz/datascience-template"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-ipdb = "^0.13.9"
+python = ">=3.9.0,<4"
 
+[tool.poetry.group.dev.dependencies]
+ipdb = "^0.13.13"
+pre-commit = "^3.8.0"
+pip-licenses = "^5.0.0"
+ruff = "^0.6.6"
+pytest = "^8.3.3"
+pytest-cookies = "*"
+pytest-sugar = "*"
+cookiecutter = "*"
+pyyaml = "^6.0.2"
 
-[tool.isort]
-profile = "black"
-
-[tool.black]
+[tool.ruff]
+extend-include = ["*.ipynb"]
+indent-width = 4
 line-length = 120
-target-version = ['py39']
-include = '\.pyi?$'
-exclude = '''
-/(
-  \.git
-| \.mypy_cache
-| \.venv
-| _build
-| build
-)/
-'''
+target-version = "py311"
+exclude = [
+	"*cookiecutter.project_slug*"
+	]
 
-[tool.pylint.master]
-extension-pkg-whitelist = ["pydantic"]
-fail-under = "9"
-ignore = []
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = true
+docstring-code-line-length = 92
 
-[tool.pylint.format]
-max-line-length = "120"
+[tool.ruff.lint]
+preview = true
+fixable = ["ALL"]
+unfixable = []
+select = [
+  # Enable
+  "A",     # flake8-builtins
+  "ARG",   # flake8-unused-arguments
+  "ASYNC", # flake8-async
+  "B",     # flake8-bugbear
+  "BLE",   # flake8-blind-except
+  "C90",   # mccabe
+  "D",     # pydocstyle
+  "DOC",   # pydoclint
+  "E",     # pycodestyle Error
+  "F",     # Pyflakes
+  "FURB",  # refurb - A tool for refurbishing and modernizing Python codebases.
+  "G",     # flake8-logging-format
+  "FAST",  # FastAPI
+  "FBT",   # flake8-boolean-trap
+  "I",     # isort
+  "LOG",   # flake8-logging
+  "N",     # pep8-naming
+  "NPY",   # NumPy-specific rules
+  "PD",    # pandas-vet
+  "PERF",  # Perflint
+  "PIE",   # flake8-pie
+  "PL",    # Pylint
+  "PT",    # flake8-pytest-style
+  "PTH",   # flake8-use-pathlib
+  "RET",   # flake8-return
+  "RUF",   # Ruff-specific rules
+  "S",     # flak8-bandit
+  "SIM",   # flake8-simplify
+  "SLF",   # flake8-self
+  "UP",    # pyupgrade
+  "T10",   # flake8-debugger
+  "T20",   # flake8-print
+  "TID",   # flake8-tidy-imports
+  "TRY",   # tryceratops (TRY)
+  "W",     # pycodestyle Warning
+]
+ignore = [
 
-[tool.pylint.messages_control]
-# pylint: disable=unsubscriptable-object is used here due to a bug
-# showing too many false-positives. See https://github.com/PyCQA/pylint/issues/3882
-disable = [
-    "trailing-whitespace",
-    "missing-module-docstring",
-    "missing-function-docstring",
-    "missing-class-docstring",
-    "unsubscriptable-object",
-    ]
+]
 
-[tool.pylint.miscellaneous]
-notes = "FIXME,XXX,TODO,TODO,fixme,todo,TODO:"
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/**/*.py" = [
+  # at least this three should be fine in tests:
+  "S101", # asserts allowed in tests...
+  "ARG",  # Unused function args -> fixtures nevertheless are functionally relevant...
+  "D103", # Missing docstring in public function
+  "FBT",  # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+  # The below are debateable
+  "PLR2004", # Magic value used in comparison, ...
+  "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes
+  "SLF",     # flake8-self
+]
 
-#[tool.pytest.ini_options]
-#addopts = "--pdbcls=IPython.terminal.debugger:TerminalPdb"
-
-[tool.coverage.report]
-omit = ["*/__init__.py", ".mypy_cache", ".reports", ".git"]
-show_missing = true
-
-[tool.coverage.run]
-omit = ["*/__init__.py", ".mypy_cache", ".reports", ".git"]
-
-[build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry_core>=1.0.0"]
+[tool.ruff.lint.pydocstyle]
+convention = "google"

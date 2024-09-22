@@ -3,21 +3,19 @@ repos:
     rev: v4.5.0
     hooks:
       - id: check-added-large-files
+        exclude: "^{{cookiecutter.project_slug}}"
       - id: check-docstring-first
+        exclude: "^{{cookiecutter.project_slug}}"
       - id: check-shebang-scripts-are-executable
+        exclude: "^{{cookiecutter.project_slug}}"
       - id: debug-statements
+        exclude: "^{{cookiecutter.project_slug}}"
       - id: check-json
+        exclude: "^{{cookiecutter.project_slug}}"
       - id: check-toml
+        exclude: "^{{cookiecutter.project_slug}}"
       - id: check-yaml
-        exclude: "not_rendered.yml|invalid-config.yaml"
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.1
-    hooks:
-      - id: ruff # Run the linter.
-        types_or: [python, pyi]
-        args: [--fix]
-      - id: ruff-format # Run the formatter.
-        types_or: [python, pyi, jupyter]
+        exclude: "^{{cookiecutter.project_slug}}|not_rendered.yml|invalid-config.yaml"
   - repo: local
     hooks:
       - id: pytest
@@ -25,7 +23,7 @@ repos:
         entry: |
           sh -c '
           if ls tests/*.py >/dev/null 2>&1; then
-            poetry run pytest -m "not nondeterministic";
+            poetry run pytest;
           else
             echo "No test files found. Skipping pytest.";
           fi
