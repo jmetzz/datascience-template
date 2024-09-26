@@ -1,12 +1,11 @@
 {
-  "project_name": "New DS Project",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_slug": "my-project",
+  "project_name": "{{ cookiecutter.project_slug.lower().replace('-', ' ').replace('_', ' ') | title }}",
   "description": "A short description of the project.",
   "author": "Jean Metz",
-  "email": "jmetzz.dev@gmail.com",
   "github_username": "jmetzz",
   "version": "0.1.0",
-  "copyright_year": "{% now 'utc', '%Y' %}",
+  "_copyright_year": "{% now 'utc', '%Y' %}",
   "license": [
     "MIT",
     "BSD-3-Clause",
@@ -15,8 +14,11 @@
     "GPL-3.0-only",
     "No license file"
   ],
+  "__slug": "{{ cookiecutter.project_slug.lower().replace(' ', '-').replace('_', '-') }}",
+  "__module_slug": "{{ cookiecutter.__slug.lower().replace('-', '_') }}",
+  "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
   "is_library": [
+    false,
     true
-  ],
-  "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+  ]
 }

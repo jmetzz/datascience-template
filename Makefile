@@ -29,7 +29,8 @@ deps: initialize ## Install dependencies, including dev & test dependencies
 	poetry run pre-commit install --hook-type pre-push
 
 bake:  ## Generate project using defaults
-	cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists
+	@printf "$(CYAN)>>> Running cookiecutter...$(COFF)\n"
+	@cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists
 
 test: ## Run unit tests
 	@printf "$(CYAN)Running test suite$(COFF)\n"

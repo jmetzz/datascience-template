@@ -1,6 +1,6 @@
 """Command-line interface."""
 
-import {{cookiecutter.project_slug}}
+from {{cookiecutter.__module_slug}} import hello
 
 import logging
 
@@ -11,8 +11,9 @@ app = typer.Typer()
 
 @app.command()
 def main():
-    """Console script for {{cookiecutter.project_name}}."""
-    logging.info("""Project: {{cookiecutter.project_slug}}.""")
+    """Console script for '"{{ cookiecutter.project_slug | title }}"'."""
+    logging.info("""Project: {{cookiecutter.__module_slug}}.""")
+    print(hello())
 
 
 if __name__ == "__main__":
