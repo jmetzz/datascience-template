@@ -169,3 +169,6 @@ cython_debug/
 
 # Other
 *.log
+
+# to avoid adding the 'make bake' output 
+my-project/
