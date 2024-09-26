@@ -18,4 +18,4 @@ def test_app(caplog):
         assert result.exit_code == 0
 
         # Check that the log contains the expected output
-        assert f"Project: {{cookiecutter.project_slug}}" in caplog.text
+        assert f"Project: {{cookiecutter.__module_slug}}" in caplog.text
