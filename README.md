@@ -51,4 +51,14 @@ This will use the latest version in the main file. To generate a project from a 
 use the `-c, --checkout <checkout>` option. See details at 
 [Cookiecutter Command Line Options](https://cookiecutter.readthedocs.io/en/stable/cli_options.html#cmdoption-cookiecutter-c).
 
+Enter in your new project directory, install the dependencies and create the first commit:
+
+```bash
+cd <your-project-directory>
+make deps license
+make lint test
+git add .
+git commit -m "Initial commit"
+```
+
 Enjoy your new project.
