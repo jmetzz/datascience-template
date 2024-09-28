@@ -16,6 +16,11 @@ repos:
         exclude: "^{{cookiecutter.project_slug}}"
       - id: check-yaml
         exclude: "^{{cookiecutter.project_slug}}|not_rendered.yml|invalid-config.yaml"
+  - repo: https://github.com/python-poetry/poetry
+    rev: "1.8.3"
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
   - repo: local
     hooks:
       - id: pytest
